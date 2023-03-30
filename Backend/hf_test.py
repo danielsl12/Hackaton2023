@@ -3,11 +3,10 @@
 import os
 
 # Define the path to the directory containing text files
-# dir_path = '../data_library'
-dir_path = '../data_library_hebrew'
+dir_path = '../data_library'
+# dir_path = '../data_library_hebrew'
 
 from InstructorEmbedding import INSTRUCTOR
-model = INSTRUCTOR('hkunlp/instructor-xl')
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -19,6 +18,7 @@ aws_secret_access_key = "j0o29riJ413mocUN77PYIbNZB0774Gbaha92/5ny"
 
 
 # user_task = 'Take an injection for your allergy'
+model = INSTRUCTOR('hkunlp/instructor-xl')
 
 def retrieve_document(user_task):
     # Load the text files into a list
@@ -33,6 +33,7 @@ def retrieve_document(user_task):
     # translate the user task to english
     user_task = translate_text(user_task, target_language='en')
     query = [['Represent the task for retrieving supporting documents:', user_task]]
+    print('*******************:', query)
     corpus = [['Represent the document for retrieval: ', file] for file in file_list]
 
     query_embeddings = model.encode(query)
@@ -57,5 +58,6 @@ def translate_text(text, target_language='en'):
 
     # Print the translated text
     print(f'Translated text: {result["TranslatedText"]}')
+    return result["TranslatedText"]
 
 
