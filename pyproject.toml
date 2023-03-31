@@ -9,6 +9,10 @@ readme = "README.md"
 python = "^3.10"
 openai = "^0.27.2"
 boto3 = "^1.26.102"
+flask = "^2.2.3"
+instructorembedding = "^1.0.0"
+numpy = "^1.24.2"
+scikit-learn = "^1.2.2"
 
 
 [build-system]
